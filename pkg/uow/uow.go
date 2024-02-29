@@ -55,7 +55,7 @@ func (u *Uow) GetRepository(ctx context.Context, name string) (interface{}, erro
 	return nil, errors.New("repository not found")
 }
 
-func (u *Uow) Do(ctx context.Context, fn func(uow *Uow) error) error {
+func (u *Uow) Do(ctx context.Context, fn func(uow UowInterface) error) error {
 
 	if u.Tx != nil {
 		return fmt.Errorf("transaction already started")

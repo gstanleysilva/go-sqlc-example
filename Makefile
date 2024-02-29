@@ -19,11 +19,11 @@ migrate-create:
 
 #run migrations
 migrate-up:
-	@migrate -path=sql/migrations -database "mysql://root:root@tcp(localhost:3306)/courses" -verbose up
+	@migrate -path=infra/database/migrations -database "mysql://root:root@tcp(localhost:3306)/courses" -verbose up
 
 #run migrations
 migrate-down:
-	@migrate -path=sql/migrations -database "mysql://root:root@tcp(localhost:3306)/courses" -verbose down
+	@migrate -path=infra/database/migrations -database "mysql://root:root@tcp(localhost:3306)/courses" -verbose down
 
 #open mysql
 #after executing this command you have to authenticate using: mysql -uroot -p courses

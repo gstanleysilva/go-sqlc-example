@@ -15,7 +15,7 @@ type CategoryRepository struct {
 	Queries  *db.Queries
 }
 
-func NewCreateCategoryService(sqlConn *sql.DB) *CategoryRepository {
+func NewCategoryRepository(sqlConn *sql.DB) *CategoryRepository {
 	return &CategoryRepository{
 		TxHelper: sqlc.NewSQLCHelper(sqlConn),
 		Queries:  db.New(sqlConn),

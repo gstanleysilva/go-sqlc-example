@@ -5,17 +5,6 @@ import (
 	"github.com/gstanleysilva/go-sqlc-example/internal/domain"
 )
 
-type CourseInput struct {
-	Name        string
-	Description string
-	Price       float64
-}
-
-type CategoryInput struct {
-	Name        string
-	Description string
-}
-
 type CreateCourseWithCategoryService struct {
 	repo domain.CourseCategoryRepository
 }

@@ -31,11 +31,7 @@ func (r *CategoryRepository) GetAll() ([]domain.Category, error) {
 	}
 
 	for _, cat := range categories {
-		result = append(result, domain.Category{
-			ID:          cat.ID,
-			Name:        cat.Name,
-			Description: cat.Description,
-		})
+		result = append(result, domain.Category(cat))
 	}
 
 	return result, nil
@@ -48,22 +44,14 @@ func (r *CategoryRepository) GetById(id string) (*domain.Category, error) {
 		return nil, err
 	}
 
-	result := &domain.Category{
-		ID:          category.ID,
-		Name:        category.Name,
-		Description: category.Description,
-	}
+	result := domain.Category(category)
 
-	return result, nil
+	return &result, nil
 }
 
 func (r *CategoryRepository) Create(category *domain.Category) (*domain.Category, error) {
 
-	_, err := r.Queries.CreateCategory(context.Background(), db.CreateCategoryParams{
-		ID:          category.ID,
-		Name:        category.Name,
-		Description: category.Description,
-	})
+	_, err := r.Queries.CreateCategory(context.Background(), db.CreateCategoryParams(*category))
 	if err != nil {
 		return nil, err
 	}

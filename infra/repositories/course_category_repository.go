@@ -49,11 +49,7 @@ func (r *CourseCategoryRepository) CreateCourseWithCategory(course *domain.Cours
 	ctx := context.Background()
 
 	err := r.TxHelper.CallTx(context.Background(), func(q *db.Queries) error {
-		_, err := q.CreateCategory(ctx, db.CreateCategoryParams{
-			ID:          category.ID,
-			Name:        category.Name,
-			Description: category.Description,
-		})
+		_, err := q.CreateCategory(ctx, db.CreateCategoryParams(*category))
 		if err != nil {
 			return err
 		}

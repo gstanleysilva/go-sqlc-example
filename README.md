@@ -1,2 +1,5 @@
-# go-sqlc-example
-Example of SQLC for Go
+# Go SQLC/UOW example
+
+This repository is a simple example of using go sqlc and uow.
+
+Thanks

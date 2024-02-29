@@ -1,7 +1,7 @@
 version: "2"
 
 sql:
-- schema: "infra/database/migrations"
+- schema: [ "infra/database/migrations", "infra/database/schema"]
   queries: "infra/database/queries"
   engine: "mysql"
   gen:

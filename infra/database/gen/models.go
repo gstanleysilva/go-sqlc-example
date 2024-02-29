@@ -21,3 +21,11 @@ type Course struct {
 	Description sql.NullString
 	Price       float64
 }
+
+type User struct {
+	ID       string
+	Email    string
+	Name     string
+	Username string
+	Password string
+}

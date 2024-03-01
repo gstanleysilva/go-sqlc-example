@@ -1,3 +1,8 @@
+#generate DI
+wire:
+	@wire ./infra/di/
+
+#execute the program
 run:
 	@go run cmd/main.go
 
@@ -33,4 +38,4 @@ open-mysql:
 sqlc:
 	@sqlc generate
 
-.PHONY: db-up prepare-mysql migrate-create migrate-up migrate-down open-mysql sqlc
+.PHONY: db-up prepare-mysql migrate-create migrate-up migrate-down open-mysql sqlc wire

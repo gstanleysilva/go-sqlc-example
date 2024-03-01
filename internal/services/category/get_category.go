@@ -8,8 +8,8 @@ type GetCategoryService struct {
 	cr domain.CategoryRepository
 }
 
-func NewGetCategoryService(cr domain.CategoryRepository) GetCategoryService {
-	return GetCategoryService{cr: cr}
+func NewGetCategoryService(cr domain.CategoryRepository) *GetCategoryService {
+	return &GetCategoryService{cr: cr}
 }
 
 func (s GetCategoryService) Execute(id string) (domain.Category, error) {

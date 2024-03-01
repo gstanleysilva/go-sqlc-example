@@ -6,8 +6,8 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	db "github.com/gstanleysilva/go-sqlc-example/infra/database/gen"
-	"github.com/gstanleysilva/go-sqlc-example/infra/sqlc"
 	"github.com/gstanleysilva/go-sqlc-example/internal/domain"
+	"github.com/gstanleysilva/go-sqlc-example/pkg/sqlc"
 )
 
 type CourseRepository struct {

@@ -2,17 +2,17 @@ package coursecategory
 
 import "github.com/gstanleysilva/go-sqlc-example/internal/domain"
 
-type GetCoursesWithCategory struct {
+type GetCoursesWithCategoryService struct {
 	repo domain.CourseCategoryRepository
 }
 
-func NewGetCoursesWithCategory(repo domain.CourseCategoryRepository) *GetCoursesWithCategory {
-	return &GetCoursesWithCategory{
+func NewGetCoursesWithCategoryService(repo domain.CourseCategoryRepository) *GetCoursesWithCategoryService {
+	return &GetCoursesWithCategoryService{
 		repo: repo,
 	}
 }
 
-func (s *GetCoursesWithCategory) Execute() ([]domain.CourseAndCategory, error) {
+func (s *GetCoursesWithCategoryService) Execute() ([]domain.CourseAndCategory, error) {
 
 	entries, err := s.repo.GetCoursesAndRepositories()
 	if err != nil {

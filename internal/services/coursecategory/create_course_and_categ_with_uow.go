@@ -2,17 +2,22 @@ package coursecategory
 
 import (
 	"context"
+	"database/sql"
 
 	"github.com/google/uuid"
+	db "github.com/gstanleysilva/go-sqlc-example/infra/database/gen"
+	"github.com/gstanleysilva/go-sqlc-example/infra/repositories"
 	"github.com/gstanleysilva/go-sqlc-example/internal/domain"
 	"github.com/gstanleysilva/go-sqlc-example/pkg/uow"
 )
 
+type CourseAndCategoryUow uow.UowInterface
+
 type CreateCourseAndCategoryUowService struct {
-	Uow uow.UowInterface
+	Uow CourseAndCategoryUow
 }
 
-func NewCreateCourseAndCategoryUowService(uow uow.UowInterface) *CreateCourseAndCategoryUowService {
+func NewCreateCourseAndCategoryUowService(uow CourseAndCategoryUow) *CreateCourseAndCategoryUowService {
 	return &CreateCourseAndCategoryUowService{
 		Uow: uow,
 	}
@@ -75,4 +80,22 @@ func (s *CreateCourseAndCategoryUowService) getCategoryRepository(ctx context.Co
 		panic(err)
 	}
 	return repo.(domain.CategoryRepository)
+}
+
+func NewCourseAndCategoryUow(sqlConn *sql.DB) CourseAndCategoryUow {
+	uow := uow.NewUow(sqlConn)
+
+	uow.Register("CategoryRepository", func(tx *sql.Tx) interface{} {
+		repo := repositories.NewCategoryRepository(sqlConn)
+		repo.Queries = db.New(tx)
+		return repo
+	})
+
+	uow.Register("CourseRepository", func(tx *sql.Tx) interface{} {
+		repo := repositories.NewCourseRepository(sqlConn)
+		repo.Queries = db.New(tx)
+		return repo
+	})
+
+	return uow
 }

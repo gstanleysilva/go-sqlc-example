@@ -1,5 +1,11 @@
 # Go SQLC/UOW example
 
+This small project uses:
+- SQLC
+- Go Migrate
+- Wire
+- Unit of Work
+
 ### Installing Pre-requisites:
 
 Installing Wire for DI:
